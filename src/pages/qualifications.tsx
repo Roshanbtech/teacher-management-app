@@ -6,4 +6,5 @@ const qualifications = () => {
   )
 }
 
+
 export default qualifications

@@ -12,4 +12,5 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => (
     ))}
   </nav>
 );
+Breadcrumbs.displayName = "Breadcrumbs";
 export default Breadcrumbs;

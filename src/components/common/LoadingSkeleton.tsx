@@ -27,5 +27,5 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
     aria-label="Loading…"
   />
 );
-
+LoadingSkeleton.displayName = "LoadingSkeleton";
 export default LoadingSkeleton;

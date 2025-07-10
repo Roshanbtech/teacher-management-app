@@ -109,4 +109,5 @@ const Qualifications: React.FC<QualificationsProps> = ({
     </div>
   );
 };
+Qualifications.displayName = "Qualifications";
 export default Qualifications;
