@@ -260,4 +260,5 @@ const TeacherDetails: React.FC<TeacherDetailsProps> = ({ teacher, onUpdate }) =>
   );
 };
 
+TeacherDetails.displayName = "TeacherDetails";
 export default TeacherDetails;
