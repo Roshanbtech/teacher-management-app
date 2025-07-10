@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 html {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -111,14 +111,16 @@ body {
   .calendar-grid {
     min-width: 500px;
   }
-  
+
   .calendar-cell {
     min-height: 35px;
     font-size: 12px;
     padding: 4px;
   }
-  
-  input, textarea, select {
+
+  input,
+  textarea,
+  select {
     font-size: 16px !important;
   }
 }
@@ -127,7 +129,7 @@ body {
   .calendar-grid {
     min-width: 400px;
   }
-  
+
   .calendar-cell {
     min-height: 30px;
     font-size: 11px;

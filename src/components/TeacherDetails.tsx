@@ -1,6 +1,15 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { Teacher, Qualification } from "../types";
-import { Edit2, Save, X, User, Mail, Phone, MapPin, Shield } from "lucide-react";
+import {
+  Edit2,
+  Save,
+  X,
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  Shield,
+} from "lucide-react";
 import Qualifications from "./Qualifications";
 import { teacherSchema } from "../validations/teacherSchema";
 
@@ -9,7 +18,10 @@ interface TeacherDetailsProps {
   onUpdate: (teacher: Teacher) => void;
 }
 
-const TeacherDetails: React.FC<TeacherDetailsProps> = ({ teacher, onUpdate }) => {
+const TeacherDetails: React.FC<TeacherDetailsProps> = ({
+  teacher,
+  onUpdate,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState<Teacher>(teacher);
   const [errors, setErrors] = useState<{ [k: string]: string }>({});
@@ -96,61 +108,68 @@ const TeacherDetails: React.FC<TeacherDetailsProps> = ({ teacher, onUpdate }) =>
         placeholder?: string;
         isTextarea?: boolean;
         options?: string[] | null;
-      }) => (
-        <div className="space-y-2">
-          <label className="flex items-center text-sm font-medium text-gray-700">
-            <Icon size={16} className="mr-2 text-gray-500" />
-            {label}
-          </label>
-          {isEditing ? (
-            options ? (
-              <select
-                value={formData[field] as string}
-                onChange={(e) => handleChange(field, e.target.value)}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors[field] ? "border-red-500 focus:ring-red-500" : "border-gray-300"
-                }`}
-              >
-                {options.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            ) : isTextarea ? (
-              <textarea
-                value={formData[field] as string}
-                onChange={(e) => handleChange(field, e.target.value)}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${
-                  errors[field] ? "border-red-500 focus:ring-red-500" : "border-gray-300"
-                }`}
-                placeholder={placeholder}
-                rows={3}
-              />
+      }) =>
+        (
+          <div className="space-y-2">
+            <label className="flex items-center text-sm font-medium text-gray-700">
+              <Icon size={16} className="mr-2 text-gray-500" />
+              {label}
+            </label>
+            {isEditing ? (
+              options ? (
+                <select
+                  value={formData[field] as string}
+                  onChange={(e) => handleChange(field, e.target.value)}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    errors[field]
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-300"
+                  }`}
+                >
+                  {options.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              ) : isTextarea ? (
+                <textarea
+                  value={formData[field] as string}
+                  onChange={(e) => handleChange(field, e.target.value)}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${
+                    errors[field]
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-300"
+                  }`}
+                  placeholder={placeholder}
+                  rows={3}
+                />
+              ) : (
+                <input
+                  type={type}
+                  value={formData[field] as string}
+                  onChange={(e) => handleChange(field, e.target.value)}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    errors[field]
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-300"
+                  }`}
+                  placeholder={placeholder}
+                  autoFocus={field === "name"}
+                />
+              )
             ) : (
-              <input
-                type={type}
-                value={formData[field] as string}
-                onChange={(e) => handleChange(field, e.target.value)}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors[field] ? "border-red-500 focus:ring-red-500" : "border-gray-300"
-                }`}
-                placeholder={placeholder}
-                autoFocus={field === "name"}
-              />
-            )
-          ) : (
-            <div className="text-gray-900 py-2 min-h-[2.5rem] flex items-center">
-              {formData[field] as string || (
-                <span className="text-gray-400 italic">Not provided</span>
-              )}
-            </div>
-          )}
-          {errors[field] && (
-            <p className="text-xs text-red-600 mt-1">{errors[field]}</p>
-          )}
-        </div>
-      ),
+              <div className="text-gray-900 py-2 min-h-[2.5rem] flex items-center">
+                {(formData[field] as string) || (
+                  <span className="text-gray-400 italic">Not provided</span>
+                )}
+              </div>
+            )}
+            {errors[field] && (
+              <p className="text-xs text-red-600 mt-1">{errors[field]}</p>
+            )}
+          </div>
+        ),
     [formData, errors, handleChange, isEditing]
   );
 
@@ -197,17 +216,24 @@ const TeacherDetails: React.FC<TeacherDetailsProps> = ({ teacher, onUpdate }) =>
             <User size={32} className="text-white" />
           </div>
           <div className="flex-1">
-            <h3 className="text-xl font-semibold text-gray-900 mb-1">{formData.name || "No Name"}</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-1">
+              {formData.name || "No Name"}
+            </h3>
             <p className="text-gray-600 mb-2">{formData.role}</p>
-            <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${statusColor}`}>
-              <span className={`w-2 h-2 rounded-full mr-2 ${
-                formData.status === "active"
-                  ? "bg-green-500"
-                  : formData.status === "inactive"
-                  ? "bg-red-500"
-                  : "bg-yellow-500"
-              }`} />
-              {formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}
+            <span
+              className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${statusColor}`}
+            >
+              <span
+                className={`w-2 h-2 rounded-full mr-2 ${
+                  formData.status === "active"
+                    ? "bg-green-500"
+                    : formData.status === "inactive"
+                    ? "bg-red-500"
+                    : "bg-yellow-500"
+                }`}
+              />
+              {formData.status.charAt(0).toUpperCase() +
+                formData.status.slice(1)}
             </span>
           </div>
         </div>
@@ -215,18 +241,46 @@ const TeacherDetails: React.FC<TeacherDetailsProps> = ({ teacher, onUpdate }) =>
         {/* Form Fields */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div className="space-y-6">
-            <FormField icon={User} label="Full Name" field="name" placeholder="Enter full name" />
+            <FormField
+              icon={User}
+              label="Full Name"
+              field="name"
+              placeholder="Enter full name"
+            />
             <FormField
               icon={Shield}
               label="Role"
               field="role"
-              options={["Teacher", "Senior Teacher", "Department Head", "Substitute Teacher"]}
+              options={[
+                "Teacher",
+                "Senior Teacher",
+                "Department Head",
+                "Substitute Teacher",
+              ]}
             />
-            <FormField icon={Mail} label="Email Address" field="email" type="email" placeholder="Enter email address" />
+            <FormField
+              icon={Mail}
+              label="Email Address"
+              field="email"
+              type="email"
+              placeholder="Enter email address"
+            />
           </div>
           <div className="space-y-6">
-            <FormField icon={Phone} label="Phone Number" field="phone" type="tel" placeholder="Enter phone number" />
-            <FormField icon={MapPin} label="Address" field="address" placeholder="Enter address" isTextarea />
+            <FormField
+              icon={Phone}
+              label="Phone Number"
+              field="phone"
+              type="tel"
+              placeholder="Enter phone number"
+            />
+            <FormField
+              icon={MapPin}
+              label="Address"
+              field="address"
+              placeholder="Enter address"
+              isTextarea
+            />
             {isEditing && (
               <div className="space-y-2">
                 <label className="flex items-center text-sm font-medium text-gray-700">

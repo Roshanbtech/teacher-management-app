@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { Qualification } from "../types";
-import { Plus, Edit2, Trash2, Eye, EyeOff, DollarSign, BookOpen } from "lucide-react";
+import {
+  Plus,
+  Edit2,
+  Trash2,
+  Eye,
+  EyeOff,
+  DollarSign,
+  BookOpen,
+} from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 
 interface QualificationsProps {
@@ -23,7 +31,8 @@ const Qualifications: React.FC<QualificationsProps> = ({
   readonly = false,
 }) => {
   const [isAdding, setIsAdding] = useState(false);
-  const [newQual, setNewQual] = useState<Omit<Qualification, "id">>(defaultQual);
+  const [newQual, setNewQual] =
+    useState<Omit<Qualification, "id">>(defaultQual);
 
   // Add Qualification
   function handleAdd() {
@@ -34,12 +43,14 @@ const Qualifications: React.FC<QualificationsProps> = ({
   }
   // Delete Qualification
   function handleDelete(id: string) {
-    onChange(qualifications.filter(q => q.id !== id));
+    onChange(qualifications.filter((q) => q.id !== id));
   }
   // Toggle Active
   function handleToggle(id: string) {
     onChange(
-      qualifications.map(q => (q.id === id ? { ...q, isActive: !q.isActive } : q))
+      qualifications.map((q) =>
+        q.id === id ? { ...q, isActive: !q.isActive } : q
+      )
     );
   }
 
@@ -54,7 +65,10 @@ const Qualifications: React.FC<QualificationsProps> = ({
           </span>
         </div>
         {!readonly && (
-          <button className="text-blue-600 flex items-center gap-1 hover:bg-blue-50 rounded px-2 py-1 text-sm" onClick={() => setIsAdding(true)}>
+          <button
+            className="text-blue-600 flex items-center gap-1 hover:bg-blue-50 rounded px-2 py-1 text-sm"
+            onClick={() => setIsAdding(true)}
+          >
             <Plus size={16} /> Add
           </button>
         )}
@@ -62,28 +76,80 @@ const Qualifications: React.FC<QualificationsProps> = ({
       {isAdding && (
         <div className="bg-blue-50 border p-4 rounded-lg mb-4">
           <div className="flex flex-wrap gap-2 mb-2">
-            <input type="text" className="border px-2 py-1 rounded" placeholder="Name" value={newQual.name} onChange={e => setNewQual({ ...newQual, name: e.target.value })} />
-            <input type="number" className="border px-2 py-1 rounded w-20" placeholder="Rate" value={newQual.rate} onChange={e => setNewQual({ ...newQual, rate: parseFloat(e.target.value) })} />
-            <select className="border px-2 py-1 rounded" value={newQual.currency} onChange={e => setNewQual({ ...newQual, currency: e.target.value })}>
+            <input
+              type="text"
+              className="border px-2 py-1 rounded"
+              placeholder="Name"
+              value={newQual.name}
+              onChange={(e) => setNewQual({ ...newQual, name: e.target.value })}
+            />
+            <input
+              type="number"
+              className="border px-2 py-1 rounded w-20"
+              placeholder="Rate"
+              value={newQual.rate}
+              onChange={(e) =>
+                setNewQual({ ...newQual, rate: parseFloat(e.target.value) })
+              }
+            />
+            <select
+              className="border px-2 py-1 rounded"
+              value={newQual.currency}
+              onChange={(e) =>
+                setNewQual({ ...newQual, currency: e.target.value })
+              }
+            >
               <option value="USD">USD</option>
               <option value="INR">INR</option>
               <option value="EUR">EUR</option>
             </select>
-            <select className="border px-2 py-1 rounded" value={newQual.type} onChange={e => setNewQual({ ...newQual, type: e.target.value as "private" | "group" })}>
+            <select
+              className="border px-2 py-1 rounded"
+              value={newQual.type}
+              onChange={(e) =>
+                setNewQual({
+                  ...newQual,
+                  type: e.target.value as "private" | "group",
+                })
+              }
+            >
               <option value="private">Private</option>
               <option value="group">Group</option>
             </select>
-            <input type="text" className="border px-2 py-1 rounded" placeholder="Description" value={newQual.description} onChange={e => setNewQual({ ...newQual, description: e.target.value })} />
+            <input
+              type="text"
+              className="border px-2 py-1 rounded"
+              placeholder="Description"
+              value={newQual.description}
+              onChange={(e) =>
+                setNewQual({ ...newQual, description: e.target.value })
+              }
+            />
           </div>
           <div className="flex gap-2">
-            <button className="bg-blue-600 text-white rounded px-3 py-1" onClick={handleAdd}>Add</button>
-            <button className="bg-gray-300 rounded px-3 py-1" onClick={() => setIsAdding(false)}>Cancel</button>
+            <button
+              className="bg-blue-600 text-white rounded px-3 py-1"
+              onClick={handleAdd}
+            >
+              Add
+            </button>
+            <button
+              className="bg-gray-300 rounded px-3 py-1"
+              onClick={() => setIsAdding(false)}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {qualifications.map(q => (
-          <div key={q.id} className={`p-4 rounded-lg border ${q.isActive ? "bg-white" : "bg-gray-100 opacity-70"}`}>
+        {qualifications.map((q) => (
+          <div
+            key={q.id}
+            className={`p-4 rounded-lg border ${
+              q.isActive ? "bg-white" : "bg-gray-100 opacity-70"
+            }`}
+          >
             <div className="flex items-center gap-2">
               <BookOpen size={18} className="text-blue-400" />
               <span className="font-semibold">{q.name}</span>
@@ -98,8 +164,18 @@ const Qualifications: React.FC<QualificationsProps> = ({
             <div className="flex gap-2 mt-2">
               {!readonly && (
                 <>
-                  <button onClick={() => handleToggle(q.id)} className="text-gray-400 hover:text-blue-700">{q.isActive ? <EyeOff size={15} /> : <Eye size={15} />}</button>
-                  <button onClick={() => handleDelete(q.id)} className="text-red-400 hover:text-red-700"><Trash2 size={15} /></button>
+                  <button
+                    onClick={() => handleToggle(q.id)}
+                    className="text-gray-400 hover:text-blue-700"
+                  >
+                    {q.isActive ? <EyeOff size={15} /> : <Eye size={15} />}
+                  </button>
+                  <button
+                    onClick={() => handleDelete(q.id)}
+                    className="text-red-400 hover:text-red-700"
+                  >
+                    <Trash2 size={15} />
+                  </button>
                 </>
               )}
             </div>

@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
-import { ChevronLeft, ChevronRight, Calendar, Clock, User } from 'lucide-react';
-import { TimeSlot, Schedule } from '../types';
+import React, { useState, useMemo } from "react";
+import { ChevronLeft, ChevronRight, Calendar, Clock, User } from "lucide-react";
+import { TimeSlot, Schedule } from "../types";
 
 interface CalendarGridProps {
   schedule?: Schedule;
@@ -13,17 +13,25 @@ const generateTimeSlots = (): string[] => {
   const slots: string[] = [];
   for (let hour = 7; hour <= 20; hour++) {
     if (hour === 20 && slots.length > 0) break;
-    slots.push(`${hour.toString().padStart(2, '0')}:00`);
+    slots.push(`${hour.toString().padStart(2, "0")}:00`);
     if (hour < 20) {
-      slots.push(`${hour.toString().padStart(2, '0')}:30`);
+      slots.push(`${hour.toString().padStart(2, "0")}:30`);
     }
   }
   return slots;
 };
 
-const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const DAYS_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-const DAYS_MOBILE = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+const DAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+const DAYS_SHORT = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const DAYS_MOBILE = ["M", "T", "W", "T", "F", "S", "S"];
 const TIME_SLOTS = generateTimeSlots();
 
 export const CalendarGrid: React.FC<CalendarGridProps> = ({
@@ -70,9 +78,11 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
   };
 
   const getSlotData = (dayIndex: number, timeSlot: string): TimeSlot | null => {
-    return schedule?.slots.find(
-      (slot) => slot.day === dayIndex && slot.startTime === timeSlot
-    ) || null;
+    return (
+      schedule?.slots.find(
+        (slot) => slot.day === dayIndex && slot.startTime === timeSlot
+      ) || null
+    );
   };
 
   const handleSlotClick = (dayIndex: number, timeSlot: string) => {
@@ -89,7 +99,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
         day: dayIndex,
         startTime: timeSlot,
         endTime: getEndTime(timeSlot),
-        status: 'available',
+        status: "available",
       };
 
       setSelectedSlot(newSlot);
@@ -98,43 +108,58 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
   };
 
   const getEndTime = (startTime: string): string => {
-    const [hours, minutes] = startTime.split(':').map(Number);
+    const [hours, minutes] = startTime.split(":").map(Number);
     const endMinutes = minutes + 30;
     const endHours = hours + Math.floor(endMinutes / 60);
-    return `${endHours.toString().padStart(2, '0')}:${(endMinutes % 60).toString().padStart(2, '0')}`;
+    return `${endHours.toString().padStart(2, "0")}:${(endMinutes % 60)
+      .toString()
+      .padStart(2, "0")}`;
   };
 
-  const getSlotStyling = (slot: TimeSlot | null, dayIndex: number, timeSlot: string) => {
+  const getSlotStyling = (
+    slot: TimeSlot | null,
+    dayIndex: number,
+    timeSlot: string
+  ) => {
     const slotId = `${dayIndex}-${timeSlot}`;
     const isHovered = hoveredSlot === slotId;
     const isSelected = selectedSlot?.id === slotId;
 
-    let baseClasses = 'h-8 sm:h-10 md:h-12 p-0.5 sm:p-1 md:p-2 text-xs border-r border-b border-gray-200 flex items-center justify-center transition-all duration-200 relative';
-    
+    let baseClasses =
+      "h-8 sm:h-10 md:h-12 p-0.5 sm:p-1 md:p-2 text-xs border-r border-b border-gray-200 flex items-center justify-center transition-all duration-200 relative";
+
     if (isSelected) {
-      baseClasses += ' ring-1 ring-blue-500 ring-inset';
+      baseClasses += " ring-1 ring-blue-500 ring-inset";
     }
 
     if (!slot) {
-      return `${baseClasses} bg-white hover:bg-blue-50 ${readonly ? '' : 'cursor-pointer'}`;
+      return `${baseClasses} bg-white hover:bg-blue-50 ${
+        readonly ? "" : "cursor-pointer"
+      }`;
     }
 
     switch (slot.status) {
-      case 'booked':
-        return `${baseClasses} bg-green-500 text-white ${readonly ? '' : 'cursor-pointer'}`;
-      case 'unavailable':
+      case "booked":
+        return `${baseClasses} bg-green-500 text-white ${
+          readonly ? "" : "cursor-pointer"
+        }`;
+      case "unavailable":
         return `${baseClasses} bg-gray-300 text-gray-600 cursor-not-allowed`;
-      case 'available':
-        return `${baseClasses} bg-green-100 text-green-800 ${readonly ? '' : 'cursor-pointer hover:bg-green-200'}`;
+      case "available":
+        return `${baseClasses} bg-green-100 text-green-800 ${
+          readonly ? "" : "cursor-pointer hover:bg-green-200"
+        }`;
       default:
-        return `${baseClasses} bg-white hover:bg-blue-50 ${readonly ? '' : 'cursor-pointer'}`;
+        return `${baseClasses} bg-white hover:bg-blue-50 ${
+          readonly ? "" : "cursor-pointer"
+        }`;
     }
   };
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -150,7 +175,9 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
           <div className="flex items-center space-x-2">
             <Calendar size={16} className="text-blue-600 sm:w-5 sm:h-5" />
-            <h2 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900">Schedule</h2>
+            <h2 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900">
+              Schedule
+            </h2>
           </div>
 
           <div className="flex items-center justify-between sm:justify-end space-x-2 sm:space-x-4">
@@ -194,7 +221,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
             <div className="px-1 sm:px-2 md:px-4 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 flex items-center justify-center">
               <Clock size={10} className="sm:w-3 sm:h-3 md:w-4 md:h-4" />
             </div>
-            
+
             {/* Day headers */}
             {DAYS_SHORT.map((day, index) => (
               <div
@@ -207,8 +234,8 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                   <span
                     className={`text-xs font-normal ${
                       isToday(weekDates[index])
-                        ? 'text-blue-600 font-semibold'
-                        : 'text-gray-600'
+                        ? "text-blue-600 font-semibold"
+                        : "text-gray-600"
                     }`}
                   >
                     {weekDates[index].getDate()}
@@ -241,17 +268,24 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                       onMouseEnter={() => setHoveredSlot(slotId)}
                       onMouseLeave={() => setHoveredSlot(null)}
                       role="gridcell"
-                      aria-label={`${DAYS[dayIndex]} ${timeSlot} ${slotData?.status || 'empty'}`}
+                      aria-label={`${DAYS[dayIndex]} ${timeSlot} ${
+                        slotData?.status || "empty"
+                      }`}
                       tabIndex={0}
                     >
                       {slotData && (
                         <div className="w-full text-center overflow-hidden">
-                          {slotData.status === 'booked' && (
+                          {slotData.status === "booked" && (
                             <div className="space-y-0.5">
                               {slotData.studentName && (
                                 <div className="flex items-center justify-center space-x-0.5 sm:space-x-1">
-                                  <User size={8} className="sm:w-2 sm:h-2 md:w-3 md:h-3 flex-shrink-0" />
-                                  <span className="truncate text-xs sm:text-xs">{slotData.studentName.slice(0, 8)}</span>
+                                  <User
+                                    size={8}
+                                    className="sm:w-2 sm:h-2 md:w-3 md:h-3 flex-shrink-0"
+                                  />
+                                  <span className="truncate text-xs sm:text-xs">
+                                    {slotData.studentName.slice(0, 8)}
+                                  </span>
                                 </div>
                               )}
                               {slotData.subject && (
@@ -261,15 +295,19 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                               )}
                             </div>
                           )}
-                          {slotData.status === 'available' && (
+                          {slotData.status === "available" && (
                             <div className="text-green-700 text-xs font-medium">
-                              <span className="hidden sm:inline">Available</span>
+                              <span className="hidden sm:inline">
+                                Available
+                              </span>
                               <span className="sm:hidden">✓</span>
                             </div>
                           )}
-                          {slotData.status === 'unavailable' && (
+                          {slotData.status === "unavailable" && (
                             <div className="text-gray-600 text-xs">
-                              <span className="hidden sm:inline">Unavailable</span>
+                              <span className="hidden sm:inline">
+                                Unavailable
+                              </span>
                               <span className="sm:hidden">✗</span>
                             </div>
                           )}
@@ -297,7 +335,9 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
           </div>
           <div className="flex items-center space-x-1 sm:space-x-2">
             <span className="w-3 h-3 sm:w-4 sm:h-4 rounded bg-gray-300 inline-block border border-gray-300"></span>
-            <span className="text-xs sm:text-sm text-gray-700">Unavailable</span>
+            <span className="text-xs sm:text-sm text-gray-700">
+              Unavailable
+            </span>
           </div>
         </div>
       </div>

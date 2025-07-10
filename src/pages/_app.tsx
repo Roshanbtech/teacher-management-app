@@ -11,7 +11,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <AppProvider>
       <Head>
         <title>Teacher Management</title>
-        <link rel="icon" href="https://i.postimg.cc/LXTKzvyb/Preview-4.jpg" type="image/jpeg" />
+        <link
+          rel="icon"
+          href="https://i.postimg.cc/LXTKzvyb/Preview-4.jpg"
+          type="image/jpeg"
+        />
       </Head>
       <div className="flex min-h-screen">
         <Sidebar />

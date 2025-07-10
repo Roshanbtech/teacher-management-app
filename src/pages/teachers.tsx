@@ -109,30 +109,48 @@ const TeachersPage: React.FC = () => {
     addNotification({ type: "success", message: "Teacher updated successfully." });
   }, [addNotification]);
 
-  const handleScheduleChange = useCallback((schedule: Schedule) => {
-    if (!selected) return;
-    setTeachers(prev => prev.map(t => t.id === selected.id ? { ...t, schedule } : t));
-    setSelected(prev => prev && prev.id === schedule.teacherId ? { ...prev, schedule } : prev);
-    addNotification({ type: "success", message: "Schedule updated successfully." });
-  }, [selected, addNotification]);
+ const handleScheduleChange = useCallback((schedule: Schedule) => {
+  if (!selected) return;
+  setTeachers(prev => {
+    const updated = prev.map(t =>
+      t.id === selected.id
+        ? { ...t, schedule: { ...schedule, slots: [...schedule.slots] } }
+        : t
+    );
+    // Update selected with the latest object from updated array
+    const fresh = updated.find(t => t.id === selected.id) || null;
+    setSelected(fresh);
+    return updated;
+  });
+  addNotification({ type: "success", message: "Schedule updated successfully." });
+}, [selected, addNotification]);
 
-  const handleSlotClick = useCallback((slot: TimeSlot) => {
-    if (!selected) return;
-    const schedule = selected.schedule ?? emptySchedule(selected.id);
-    const slots = [...schedule.slots];
-    const idx = slots.findIndex(s => s.day === slot.day && s.startTime === slot.startTime);
-    if (idx >= 0) {
-      const cycle: Record<string, "available" | "booked" | "unavailable"> = {
-        available: "booked",
-        booked: "unavailable",
-        unavailable: "available",
-      };
-      slots[idx] = { ...slots[idx], status: cycle[slots[idx].status] };
-    } else {
-      slots.push(slot);
-    }
-    handleScheduleChange({ ...schedule, slots });
-  }, [selected, handleScheduleChange]);
+
+
+ const handleSlotClick = useCallback((slot: TimeSlot) => {
+  if (!selected) return;
+  const schedule = selected.schedule
+    ? { ...selected.schedule, slots: [...selected.schedule.slots] }
+    : emptySchedule(selected.id);
+
+  const slots = [...schedule.slots];
+  const idx = slots.findIndex(s => s.day === slot.day && s.startTime === slot.startTime);
+  if (idx >= 0) {
+    const cycle: Record<string, "available" | "booked" | "unavailable"> = {
+      available: "booked",
+      booked: "unavailable",
+      unavailable: "available",
+    };
+    slots[idx] = { ...slots[idx], status: cycle[slots[idx].status] };
+  } else {
+    slots.push({ ...slot });
+  }
+
+  const newSchedule = { ...schedule, slots: [...slots] };
+
+  handleScheduleChange(newSchedule);
+}, [selected, handleScheduleChange]);
+
 
   const handleDelete = useCallback((id: string) => {
     setTeachers(prev => {

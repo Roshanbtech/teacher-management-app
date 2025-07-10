@@ -1,6 +1,6 @@
-import React from 'react';
-import { Bell, Settings, User, ChevronDown, Search } from 'lucide-react';
-import { SidebarToggle } from './Sidebar';
+import React from "react";
+import { Bell, Settings, User, ChevronDown, Search } from "lucide-react";
+import { SidebarToggle } from "./Sidebar";
 
 interface HeaderProps {
   title: string;
@@ -13,7 +13,7 @@ export const Header: React.FC<HeaderProps> = ({
   title,
   breadcrumbs = [],
   showSearch = false,
-  actions
+  actions,
 }) => {
   return (
     <header className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
@@ -22,11 +22,18 @@ export const Header: React.FC<HeaderProps> = ({
           <SidebarToggle />
           <div>
             {breadcrumbs.length > 0 && (
-              <nav className="text-sm text-gray-500 mb-1" aria-label="Breadcrumb">
+              <nav
+                className="text-sm text-gray-500 mb-1"
+                aria-label="Breadcrumb"
+              >
                 {breadcrumbs.map((crumb, index) => (
                   <span key={index}>
-                    {index > 0 && ' / '}
-                    <span className={index === breadcrumbs.length - 1 ? 'text-gray-900' : ''}>
+                    {index > 0 && " / "}
+                    <span
+                      className={
+                        index === breadcrumbs.length - 1 ? "text-gray-900" : ""
+                      }
+                    >
                       {crumb}
                     </span>
                   </span>
@@ -39,7 +46,10 @@ export const Header: React.FC<HeaderProps> = ({
         {showSearch && (
           <div className="flex-1 max-w-md mx-8 hidden md:block">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+              <Search
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={16}
+              />
               <input
                 type="text"
                 placeholder="Search..."
@@ -50,11 +60,17 @@ export const Header: React.FC<HeaderProps> = ({
         )}
         <div className="flex items-center space-x-3">
           {actions}
-          <button className="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Notifications">
+          <button
+            className="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Notifications"
+          >
             <Bell size={20} />
             <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
-          <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Settings">
+          <button
+            className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Settings"
+          >
             <Settings size={20} />
           </button>
           <div className="relative">
