@@ -1,40 +1,110 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏫 Teacher Management App
 
-## Getting Started
+[Live Demo 🚀](https://teacher-management-app-tau.vercel.app/)
+[GitHub Repository](https://github.com/Roshanbtech/teacher-management-app/)
 
-First, run the development server:
+A modern, responsive, and user-friendly application for managing teachers, schedules, and qualifications in schools or institutes.
+Built with **Next.js**, **React**, **TypeScript**, and styled using **Tailwind CSS**.
+
+---
+
+## ✨ Features
+
+* **Modern UI:** Clean, mobile-first interface for effortless navigation.
+* **Teacher Management:** Add, edit, view, search, and delete teachers.
+* **Profile Editing:** Quickly update teacher details and qualifications.
+* **Advanced Calendar Grid:**
+
+  * View and manage weekly teaching schedules.
+  * Intuitive color-coded slots for Booked, Available, and Unavailable times.
+  * Click to update slots instantly.
+* **Instant Feedback:** Toast notifications for all major actions.
+* **Accessibility:** WCAG-compliant for everyone.
+* **Lightning Fast:** Powered by Next.js and Vercel.
+
+---
+
+## 📸 Screenshots
+
+> Add these screenshots to your repository’s `/public/screenshots` folder, then reference them as below.
+> Suggested screenshots:
+>
+> * `dashboard.png`: Main teacher dashboard
+> * `add-teacher.png`: Add teacher form
+> * `edit-profile.png`: Edit teacher details
+> * `calendar-grid.png`: Interactive schedule grid
+
+| Dashboard                                      | Add Teacher Form                                   | Edit Profile                                         | Calendar Grid                                          |
+| ---------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------ |
+| ![Dashboard](public/screenshots/dashboard.png) | ![Add Teacher](public/screenshots/add-teacher.png) | ![Edit Profile](public/screenshots/edit-profile.png) | ![Calendar Grid](public/screenshots/calendar-grid.png) |
+
+---
+
+## 🚀 Getting Started
+
+Clone this repository and run it locally:
 
 ```bash
+git clone https://github.com/Roshanbtech/teacher-management-app.git
+cd teacher-management-app
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🛠️ Tech Stack
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+* [Next.js](https://nextjs.org/) (App Router)
+* [React](https://react.dev/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [Lucide Icons](https://lucide.dev/)
+* [Vercel Hosting](https://vercel.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+## 📦 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+teacher-management-app/
+├─ components/        # Reusable React components
+├─ pages/             # Next.js pages
+├─ public/            # Static assets (screenshots, icons, etc.)
+├─ styles/            # Tailwind and global CSS
+├─ utils/             # Utility helpers
+├─ validations/       # Validation schemas
+├─ hooks/             # Custom React hooks
+├─ types/             # TypeScript types & interfaces
+└─ ...                # Other configs
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🧑‍💻 Contributing
 
-## Deploy on Vercel
+Contributions are welcome!
+Feel free to fork the repo, open issues, or submit pull requests.
+For significant changes, please open an issue first to discuss your ideas.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🙏 Acknowledgements
+
+Thanks to all open-source contributors and the Next.js, React, and Tailwind CSS communities!
+
+---
+
+## ⭐ Demo
+
+Check out the live demo: [teacher-management-app-tau.vercel.app](https://teacher-management-app-tau.vercel.app/)
+
+---
