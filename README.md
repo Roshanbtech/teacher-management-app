@@ -26,17 +26,11 @@ Built with **Next.js**, **React**, **TypeScript**, and styled using **Tailwind C
 
 ## 📸 Screenshots
 
-> Add these screenshots to your repository’s `/public/screenshots` folder, then reference them as below.
-> Suggested screenshots:
->
-> * `dashboard.png`: Main teacher dashboard
-> * `add-teacher.png`: Add teacher form
-> * `edit-profile.png`: Edit teacher details
-> * `calendar-grid.png`: Interactive schedule grid
+Below are key visuals of the app interface. All images are available in the `/public` directory.
 
-| Dashboard                                      | Add Teacher Form                                   | Edit Profile                                         | Calendar Grid                                          |
-| ---------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------ |
-| ![Dashboard](public/screenshots/dashboard.png) | ![Add Teacher](public/screenshots/add-teacher.png) | ![Edit Profile](public/screenshots/edit-profile.png) | ![Calendar Grid](public/screenshots/calendar-grid.png) |
+| Task Image                   | Dashboard                          | Teachers                         | Actions                        | Calendar                         |
+| ---------------------------- | ---------------------------------- | -------------------------------- | ------------------------------ | -------------------------------- |
+| ![Task](public/taskImg.jpeg) | ![Dashboard](public/dashboard.png) | ![Teachers](public/teachers.png) | ![Actions](public/actions.png) | ![Calendar](public/calendar.png) |
 
 ---
 
@@ -57,7 +51,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## 🛠️ Tech Stack
 
-* [Next.js](https://nextjs.org/) 
+* [Next.js](https://nextjs.org/)
 * [React](https://react.dev/)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Tailwind CSS](https://tailwindcss.com/)
@@ -106,5 +100,3 @@ Thanks to all open-source contributors and the Next.js, React, and Tailwind CSS 
 ## ⭐ Demo
 
 Check out the live demo: [teacher-management-app-tau.vercel.app](https://teacher-management-app-tau.vercel.app/)
-
----
