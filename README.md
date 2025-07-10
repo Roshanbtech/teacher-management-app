@@ -57,7 +57,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## 🛠️ Tech Stack
 
-* [Next.js](https://nextjs.org/) (App Router)
+* [Next.js](https://nextjs.org/) 
 * [React](https://react.dev/)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Tailwind CSS](https://tailwindcss.com/)
