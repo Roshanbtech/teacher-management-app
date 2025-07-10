@@ -117,7 +117,6 @@ const TeachersPage: React.FC = () => {
         ? { ...t, schedule: { ...schedule, slots: [...schedule.slots] } }
         : t
     );
-    // Update selected with the latest object from updated array
     const fresh = updated.find(t => t.id === selected.id) || null;
     setSelected(fresh);
     return updated;
